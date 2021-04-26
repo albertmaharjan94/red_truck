@@ -1,8 +1,9 @@
 #define steer_relay1 3
 #define steer_relay2 4
 #define steer A2
-int min_pot = 365 ;
-int max_pot = 685 ;
+// 379 712
+int min_pot = 385 ;
+int max_pot = 690 ;
 int degree = 0;
 
 int min_max_bias = 10;
@@ -24,6 +25,13 @@ void loop() {
   
   Serial.print(degree);
   Serial.print("  ");
+  Serial.print(goesRight);
+  Serial.print("  ");
+  Serial.print(goesLeft);
+  Serial.print("  ");
+
+  
+  
   Serial.println(steer_pot);
   
   degree = map(steer_pot, min_pot+min_max_bias, max_pot-min_max_bias, 0 , 60);
@@ -36,6 +44,7 @@ void loop() {
   } else {
     goesRight = false;
     goesLeft = false;
+    Serial.println("stop");
     digitalWrite(steer_relay2, LOW);
     digitalWrite(steer_relay1, LOW);
   }
